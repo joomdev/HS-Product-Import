@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.5" type="plugin" group="system" client="site">
+	<name>HS Product Import</name>
+	<author>JoomDev</author>
+	<creationDate>July 2016</creationDate>
+	<copyright>Copyright 2016 JoomDev</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>info@joomdev.com</authorEmail>
+	<authorUrl>http://www.joomdev.com</authorUrl>
+	<version>1.0</version>
+	<description><![CDATA[Plugin for importing HikaShop Products anywhere inside Joomla<br /><br />This plugin displays the  HikaShop Products in Joomla pages. <br /><br />Activation  Tag {hsimport XXX} &nbsp;&nbsp; (<b>XXX</b> is product id).<br> Visit <a href="https://www.joomdev.com/support" target="_blank">www.joomdev.com/support</a> for support related to the plugin.]]></description>
+	<files>
+		<filename plugin="hikashopshortcode">hikashopshortcode.php</filename>
+		<filename plugin="hikashopshortcode">hikashopshortcode_view.php</filename>
+		<folder>language</folder>
+                
+	</files>
+        <languages folder="language">
+			<language tag="en-GB">en-GB/en-GB.plg_system_hikashopshortcode.ini</language>
+	   </languages>
+	<params addpath="/components/com_hikashop/params">
+		<param name="itemid" type="text" default="" label="MENU" description="PRODUCTINSERT_MENU" />
+	</params>
+	<config>
+		<fields name="params" addfieldpath="/components/com_hikashop/fields">
+			<fieldset name="param_plg"  label="HIKASHOP_SHORCODE_PARAMS">
+				<field name="hshc_picture" type="list" default="0" label="HIKASHOP_SHORCODE_PARAMS_IMAGE" description="HIKASHOP_SHORCODE_PARAMS_IMAGE_TOOLTIP">
+                    <option value="0">HIKASHOP_SHORCODE_YES</option>
+					<option value="1">HIKASHOP_SHORCODE_NO</option>
+				</field>
+				<field name="hshc_name" type="list" default="0" label="HIKASHOP_SHORCODE_PARAMS_PRODUCT_TITLE" description="HIKASHOP_SHORCODE_PARAMS_PRODUCT_TITLE_TOOLTIP">
+					<option value="0">HIKASHOP_SHORCODE_YES</option>
+					<option value="1">HIKASHOP_SHORCODE_NO</option>
+				</field>
+				<field name="link_color" type="color" default="#ffffff" label="HIKASHOP_SHORCODE_PARAMS_PRODUCT_LINK_COLOR" description="HIKASHOP_SHORCODE_PARAMS_PRODUCT_LINK_COLOR"/>
+				<field name="spacer1" type="spacer"	hr="true"/>
+				<field name="hshc_description" type="list" default="0" label="HIKASHOP_SHORCODE_PARAMS_PRODUCT_DSC" description="HIKASHOP_SHORCODE_PARAMS_PRODUCT_DSC_TOOLTIP">
+					<option value="0">HIKASHOP_SHORCODE_YES</option>
+					<option value="1">HIKASHOP_SHORCODE_NO</option>
+				</field>
+				<field name="desc_color" type="color" default="#000000" label="HIKASHOP_SHORCODE_PARAMS_PRODUCT_DSC_COLOR" description="HIKASHOP_SHORCODE_PARAMS_PRODUCT_DSC_COLOR"/>
+				<field name="spacer2" type="spacer"	hr="true"/>
+				<field name="hshc_cart" type="list" default="0" label="HIKASHOP_SHORCODE_PARAMS_PRODUCT_CART_BUTTON" description="HIKASHOP_SHORCODE_PARAMS_PRODUCT_CART_BUTTON_TOOLTIP">
+					<option value="0">HIKASHOP_SHORCODE_YES</option>
+					<option value="1">HIKASHOP_SHORCODE_NO</option>
+				</field>
+				
+				<field name="link_details_options" type="list" default="0" label="HIKASHOP_SHORCODE_PARAMS_PRODUCT_DETAILS_LINK" description="HIKASHOP_SHORCODE_PARAMS_PRODUCT_DETAILS_LINK_TOOLTIP" class="btn-group btn-group-yesno">
+					<option value="0">HIKASHOP_SHORCODE_YES</option>
+					<option value="1">HIKASHOP_SHORCODE_NO</option>
+				</field>
+				<field name="hshc_link_details" type="text" default="Product Details" label="HIKASHOP_SHORCODE_PARAMS_PRODUCT_DETAILS" description="HIKASHOP_SHORCODE_PARAMS_PRODUCT_DETAILS_TOOLTIP"/>
+				<field name="hshc_link_details_color" type="color" default="#ffab40" label="HIKASHOP_SHORCODE_PARAMS_PRODUCT_DETAILS_LINK_COLOR" description="HIKASHOP_SHORCODE_PARAMS_PRODUCT_DETAILS_LINK_COLOR"/>
+				<field name="spacer3" type="spacer"	hr="true"/>
+				<field name="temes_style_size" type="list" default="0" label="HIKASHOP_SHORCODE_PARAMS_PRODUCT_TEMES_CARD_SIZE" description="HIKASHOP_SHORCODE_PARAMS_PRODUCT_TEMES_CARD_SIZE">
+					<option value="300">HIKASHOP_SHORCODE_PARAMS_PRODUCT_TEMES_CARD_SIZE_SMALL</option>
+					<option value="400">HIKASHOP_SHORCODE_PARAMS_PRODUCT_TEMES_CARD_SIZE_MEDIUM</option>
+                    <option value="500">HIKASHOP_SHORCODE_PARAMS_PRODUCT_TEMES_CARD_SIZE_LARGE</option>
+                </field>
+				<field name="spacer4" type="spacer"	hr="true"/>
+			</fieldset>
+ 
+<fieldset name="basic">
+			</fieldset>
+		</fields>
+	</config>
+</extension>

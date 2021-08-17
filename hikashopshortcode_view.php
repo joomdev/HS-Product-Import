@@ -230,7 +230,12 @@ a.hikashop_cart_button, a.hikashop_compare_button, .hikashop_cart_input_button {
 									echo '<style type="text/css">'."\r\n@import url(".$css.");\r\n".'</style>';
 								}
 								foreach($doc->_script as $script) {
-									echo '<script type="text/javascript">'."\r\n".$script."\r\n".'</script>';
+									if( ( ( new JVersion() )::MAJOR_VERSION ) < 4 ) {
+										$js = $script;
+									} else {
+										$js = array_values( $script )[0];
+									}
+									echo '<script type="text/javascript">'."\r\n" . $js . "\r\n".'</script>';
 								}
 							?>
 							</span>
@@ -245,7 +250,7 @@ a.hikashop_cart_button, a.hikashop_compare_button, .hikashop_cart_input_button {
 										<?php if($this->link == $link){ ?>
 											<a class="btn btn-info" href="<?php echo $link;?>">
 										<?php }
-											echo $link_details;
+											echo $link_details ? $link_details : 'Product Details';
 										if($this->link == $link){ ?>
 											</a>
 										<?php } ?>

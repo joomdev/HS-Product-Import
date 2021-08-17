@@ -42,7 +42,7 @@ class plgSystemHikashopshortcode extends JPlugin {
 	function onAfterInitialise()
 	{
 		
-		if(!JFactory::getApplication()->isAdmin()){
+		if( !JFactory::getApplication()->isClient('administrator') ) {
 			
 			$db = JFactory::getDbo();
 			$db->setQuery("SELECT enabled FROM #__extensions WHERE name = 'Hikashop' OR element='com_hikashop'");
@@ -56,18 +56,22 @@ class plgSystemHikashopshortcode extends JPlugin {
 	}
 	function onAfterRender() {
 		$app = JFactory::getApplication();
-		if($app->isAdmin())
+		if( $app->isClient('administrator') ) {
 			return true;
+		}
 
-		$layout = JRequest::getString('layout');
-		$ctrl = JRequest::getString('ctrl');
-		$task = JRequest::getString('task');
-		$function = JRequest::getString('function');
+		$jinput = JFactory::getApplication()->input;
+		$layout = $jinput->getString('layout');
+		$ctrl = $jinput->getString('ctrl');
+		$task = $jinput->getString('task');
+		$function = $jinput->getString('function');
 
 		if($layout == 'edit' || $ctrl == 'plugins' && $task == 'trigger' && $function == 'productDisplay')
 			return true;
 
-		$body = JResponse::getBody();
+		if(class_exists('JResponse'))
+			$body = JResponse::getBody();
+		
 		$alternate_body = false;
 		if(empty($body)) {
 			$body = $app->getBody();
@@ -232,7 +236,9 @@ class plgSystemHikashopshortcode extends JPlugin {
 			$pattern = '#\{hsimport(.*)\}#Uis';
 			$replacement = '';
 
-			$body = JResponse::getBody();
+			if(class_exists('JResponse'))
+				$body = JResponse::getBody();
+			
 			$alternate_body = false;
 			if(empty($body)) {
 				$body = $app->getBody();
@@ -247,11 +253,7 @@ class plgSystemHikashopshortcode extends JPlugin {
 
 			$body = str_replace($search_space,$new_search_space,$body);
 
-			if($alternate_body) {
-				$app->setBody($body);
-			} else {
-				JResponse::setBody($body);
-			}
+			$app->setBody($body);
 		}
 	}
 }
